@@ -4,7 +4,15 @@ class NoTileException(Exception):
         self.y = y
         self.__name__ = "No Tile Exception"
     def __str__(self):
-        return "No Tile at (",self.x, ",", self.y, ")"
+        return repr("No Tile at ( %s, %s )" % (self.x, self.y))
+
+class OutOfRangeException(Exception):
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+        self.__name__ = "Out Of Ranges Exception"
+    def __str__(self):
+        return repr("The location (%s,%s) is not in the terrain" % (self.x, self.y))
 
 class Location(object):
     def __init__(self):
@@ -47,6 +55,7 @@ class Row(object):
 class Terrain(object):
     def __init__(self, x, y):
         # This will be a list of Row objects
+        if x <= 0 or y <= 0: raise OutOfRangeException(x,y)
         self.x = x
         self.y = y
         self.grid = []
@@ -60,13 +69,15 @@ class Terrain(object):
     def set_tile(self, x, y, td):
         self.grid[x][y] = td
     def get_tile_type(self, x, y):
+        if x < 0 or y < 0: raise OutOfRangeException(x,y)
+
         try:
             t = self.grid[x][y].get_type()
             if t == TerrainType.Unset:
                 raise NoTileException(x,y)
-            return t
-        except:
-            raise NoTileException(x,y)
+        except IndexError:
+            raise OutOfRangeException(x,y)
+        return t
 
 
 class PatrolArea(object):
