@@ -1,5 +1,5 @@
 import unittest
-from mole_patrol import TerrainDescriptor, TerrainType, Terrain, NoTileException
+from mole_patrol import TerrainDescriptor, TerrainType, Terrain, NoTileException, OutOfRangeException
 
 class TerrainDescriptorTestCase(unittest.TestCase):
     def testCreateTypes(self):
@@ -39,8 +39,8 @@ class TerrainGridTestCase(unittest.TestCase):
 
     def testOutOfBoundsRequests(self):
         t = Terrain(2,2)
-        self.assertRaises(t.get_tile_type(0,0), NoTileException)
-        self.assertRaises(t.get_tile_type(0,3), OutOfRangeException)
+        self.assertRaises(NoTileException, t.get_tile_type, 0,0)
+        self.assertRaises(OutOfRangeException, t.get_tile_type, 0,3)
 
 if __name__ == '__main__':
     unittest.main()
