@@ -14,15 +14,6 @@ class OutOfRangeException(Exception):
     def __str__(self):
         return repr("The location (%s,%s) is not in the terrain" % (self.x, self.y))
 
-class Location(object):
-    def __init__(self):
-        self.x = 0
-        self.y = 0
-
-class Patroller(object):
-    def __init__(self):
-        None
-
 class TerrainType(object):
     Unset = 0
     Grass = 1
@@ -44,13 +35,6 @@ class TerrainDescriptor(object):
     def set_type(self, terrain_type):
         self.terrain_type = terrain_type
         return self
-
-class Row(object):
-    """
-    A row of the terrain.
-    """
-    def __init__(self):
-        self.positions = []
 
 class Terrain(object):
     def __init__(self, x, y):
@@ -79,9 +63,6 @@ class Terrain(object):
             raise OutOfRangeException(x,y)
         return t
 
-class PatrolArea(object):
-    def __init__(self):
-        self.area_map = []
 
 
 

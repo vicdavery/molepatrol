@@ -79,7 +79,5 @@ class TerrainGridTestCase(unittest.TestCase):
         self.assertRaises(OutOfRangeException, t.get_tile_type, -1, -1)
         self.assertRaises(OutOfRangeException, t.get_tile_type, 0, -1)
 
-
-
 if __name__ == '__main__':
     unittest.main()
