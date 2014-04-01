@@ -21,6 +21,16 @@ class StateMachineCreationTestCase(unittest.TestCase):
         sm.handle_event(Event.LOW_BATTERY)
         self.assertEqual(sm.get_state, State.CHARGING)
 
+    def testIdleToScanning(self):
+        None
+
+    def testPatrollingToIdle(self):
+        None
+    def testPatrollingToScanning(self):
+        None
+    def testPatrollingToCharging(self):
+        None
+    def testPatrollingTo
 
 
 

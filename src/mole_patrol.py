@@ -14,55 +14,59 @@ class OutOfRangeException(Exception):
     def __str__(self):
         return repr("The location (%s,%s) is not in the terrain" % (self.x, self.y))
 
-class TerrainType(object):
-    Unset = 0
-    Grass = 1
-    Molehill = 2
-    Tree = 3
-    Pond = 4
-    Paving = 5
-    Flowerbed = 6
-
-class TerrainDescriptor(object):
+if __name__ == '__main__':
     """
-    Identifies the type of terrain at this location.
-    """
-    def __init__(self, terrain_type):
-        self.terrain_type = terrain_type
+    At startup the patroller will scan its terrain, this process will take some time.
+    The general approach taken, will be to observe its immediate surroundings, then move in
+    one direction and circle round the starting point. Rather than circle I actually mean
+    form a square.
+    The path will look like the following (if taken in alphabetical order):
 
-    def get_type(self):
-        return self.terrain_type
-    def set_type(self, terrain_type):
-        self.terrain_type = terrain_type
-        return self
+    +---+---+---+---+---+
+    | X | Y | J | K | L |
+    +---+---+---+---+---+
+    | W | I | B | C | M |
+    +---+---+---+---+---+
+    | V | H | A | D | N |
+    +---+---+---+---+---+
+    | U | G | F | E | O |
+    +---+---+---+---+---+
+    | T | S | R | Q | P |
+    +---+---+---+---+---+
 
-class Terrain(object):
-    def __init__(self, x, y):
-        # This will be a list of Row objects
-        if x <= 0 or y <= 0: raise OutOfRangeException(x,y)
-        self.x = x
-        self.y = y
-        self.grid = []
-        for i in range(self.x):
-            self.grid.append([])
-            for j in range(self.y):
-                self.grid[i].append(TerrainDescriptor(TerrainType.Unset))
+    The complication will come when an obstacle is identified (e.g. tree, water, molehill).
+    Rather than scanning the obstacle straightaway, it will be incorporated into the scan, but to
+    do this we won't always be able to follow our path properly. So we'll need to setup a diversion
+    around the obstacle and build it into the scan.
 
-    def get_size(self):
-        return (self.x,self.y)
-    def set_tile(self, x, y, td):
-        self.grid[x][y] = td
-    def get_tile_type(self, x, y):
-        if x < 0 or y < 0: raise OutOfRangeException(x,y)
+    Given the above terrain, which has obstacles at (C,D), T, (H,V), Y
 
-        try:
-            t = self.grid[x][y].get_type()
-            if t == TerrainType.Unset:
-                raise NoTileException(x,y)
-        except IndexError:
-            raise OutOfRangeException(x,y)
-        return t
-
-
-
+    1) Start at A
+    2) Scan B-I
+    3) Identify obstacle present at (C,D)
+    4) Create diversion which will run B->A->E
+    5) Identify obstacle present at H
+    6) Create diversion which will run G->A->I
+    5) Move to B
+    6) Scan J,K,C,D,A,H,I,Y
+    7) Confirm obstacle at (C,D)
+    8) Confirm obstacle at H
+    9) New obstacle at Y
+    10) Create diversion which will run X->I->J
+    11) We want to move onto C, but there is a diversion in place which will send us to A
+    12) A has already been scanned so we move to the next point in our diversion: E
+    13) Scan D,N,O,P,Q,R,S,F,A
+    14) Confirm obstacle at D
+    15) Move to F
+    16) Scan A,D,E,Q,R,S,G,H
+    17) Confirm obstacles at D,H
+    18) Move to G
+    19) Scan H,A,F,R,S,T,U,V
+    20) Confirm obstacle at H
+    21) We want to move to H, but the diversion sends us through A to I
+    22) Scan Y,J,B,A,H,V,W,X
+    23) Confirm obstacle at Y
+    24) Obstacle at H is extended to include V
+    25) Create diversion for V which runs: U->G-A->I->W
+    26) We want to move to Y but the diversion sends us to J
 
