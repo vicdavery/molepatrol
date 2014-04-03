@@ -1,8 +1,9 @@
 import unittest
+from battery_monitor import BatteryMonitor
 
 class BatteryMonitorTestCase(unittest.TestCase):
     def testFullyCharged(self):
-        self.assertEqual(BatteryMonitor().get_charge(), BatteryMonitor.FULLY_CHARGED)
+        self.assertEqual(BatteryMonitor().get_status(), BatteryMonitor.FULLY_CHARGED)
 
     def testDrainRateReport(self):
         b = BatteryMonitor()
@@ -11,13 +12,13 @@ class BatteryMonitorTestCase(unittest.TestCase):
 
     def testCurrentCharge(self):
         b = BatteryMonitor()
-        self.assertLessEqual(b.get_charge(), BatteryMonitor.FULLY_CHARGED, "Except at initial turn on, or while on the charger, the battery will never be fully charged")
+        self.assertLessEqual(b.get_status(), BatteryMonitor.FULLY_CHARGED, "Except at initial turn on, or while on the charger, the battery will never be fully charged")
 
     def testTimeRemaining(self):
         b = BatteryMonitor()
         # Time remaining will be somewhere between 1 and 599 minutes
-        self.assertGreater(b.get_charge(), 0, "We cannot have 0 minutes remaining otherwise we would be dead")
-        self.assertLess(b.get_charge(), 600, "The battery cannot last >= 10 hours")
+        self.assertGreaterEqual(b.get_status(), BatteryMonitor.EMPTY, "We cannot have 0 minutes remaining otherwise we would be dead")
+        self.assertLessEqual(b.get_status(), BatteryMonitor.FULLY_CHARGED, "The battery cannot last >= 10 hours")
 if __name__ == '__main__':
     unittest.main()
 

@@ -1,5 +1,5 @@
 import unittest
-
+from motor import Motor
 
 class MotorTestCase(unittest.TestCase):
     def testRunMotor(self):
