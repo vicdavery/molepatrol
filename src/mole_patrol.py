@@ -69,4 +69,4 @@ if __name__ == '__main__':
     24) Obstacle at H is extended to include V
     25) Create diversion for V which runs: U->G-A->I->W
     26) We want to move to Y but the diversion sends us to J
-
+"""
