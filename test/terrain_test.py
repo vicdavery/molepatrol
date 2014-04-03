@@ -1,6 +1,6 @@
 import unittest
 from terrain import TerrainDescriptor, TerrainType, Terrain
-from exceptions import NoTileException, OutOfRangeException
+from patrol_exceptions import NoTileException, OutOfRangeException
 
 class TerrainDescriptorTestCase(unittest.TestCase):
     def testCreateTypes(self):

@@ -10,11 +10,7 @@
 #    |        +----------------------------+                 |
 #    +-------------------------------------------------------+
 
-class InvalidEventException(Exception):
-    def __init__(self):
-        self.__name__ = "Invalid Event Exception"
-    def __str__(self):
-        return repr("Cannot handle this event at the moment")
+from patrol_exceptions import InvalidEventException
 
 class State(object):
     IDLE = 0
