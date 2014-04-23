@@ -1,17 +1,26 @@
+from enum import Enum
 from motor import Motor
 
 
 class DriveSystem(object):
     """
-    The DriveSystem class brings together all the motors required to drive the patroller and provides an interface which is 
+    The DriveSystem class brings together all the motors required to drive the patroller and provides an interface which is
     capable of instructing the patroller in real-world terms, e.g. distance to travel, direction to rotate to.
     """
-    LEFT = 0
-    RIGHT = 1
-    FRONT_LEFT = 2
-    FRONT_RIGHT = 3
-    REAR_LEFT = 4
-    REAR_RIGHT = 5
+
+    # Motor Position
+    class MotorPosition(Enum):
+        left = 0
+        right = 1
+        front_left = 2
+        front_right = 3
+        rear_left = 4
+        rear_right = 5
+
+    # Motor status
+    class MotorStatus(Enum):
+        ready = 1
+        not_present = -1
 
     def __init__(self, num_motors):
         """
@@ -21,7 +30,17 @@ class DriveSystem(object):
         """
         self.position = (0,0)
         self.bearing = 0
-        self.motors
+        self.motors = self.create_required_motors(num_motors)
+    def create_required_motors(self, num_motors):
+        if num_motors == 2:
+            return { DriveSystem.MotorPosition.left : Motor(), DriveSystem.MotorPosition.right : Motor() }
+        elif num_motors == 4:
+            return {DriveSystem.MotorPosition.front_left : Motor(),
+                    DriveSystem.MotorPosition.front_right : Motor(),
+                    DriveSystem.MotorPosition.rear_left : Motor(),
+                    DriveSystem.MotorPosition.rear_right : Motor() }
+        else:
+            raise IndexError()
 
     def forward(self, distance):
         self.travel(distance)
@@ -40,4 +59,8 @@ class DriveSystem(object):
     def get_bearing(self):
         return self.bearing
 
-
+    def get_motor_status(self, motor_posn):
+        if motor_posn in self.motors:
+            return DriveSystem.MotorStatus.ready
+        else:
+            return DriveSystem.MotorStatus.not_present
