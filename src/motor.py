@@ -1,5 +1,9 @@
 
 class Motor(object):
+    """
+    The Motor class represents a single stepper motor, and provides the interface required for driving it.
+    """
+
     steps_per_revolution = 32
 
     def __init__(self):
@@ -28,5 +32,4 @@ class Motor(object):
 
     def get_steps_per_revolution(self):
         return Motor.steps_per_revolution
-
 
