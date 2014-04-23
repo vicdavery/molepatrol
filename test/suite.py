@@ -7,9 +7,9 @@ class TestSettings(object):
 
     def __init__(self):
         parser = ArgumentParser()
-        parser.add_argument('-s', '--slow_tests', default=False, required=False)
+        parser.add_argument('-s', '--slow_tests', action='store_true')
         args = parser.parse_args()
-        TestSettings.run_slow_tests = args.slow_tests == 'True'
+        TestSettings.run_slow_tests = args.slow_tests
 
 settings = TestSettings()
 if __name__ == '__main__':
