@@ -52,7 +52,9 @@ class DriveSystem(object):
         self.position = (distance + self.position[0], self.position[1])
 
     def spin(self, degrees):
-        self.bearing += degrees
+        # Handle negative turn angles and passing the full circle.
+        self.bearing += (degrees + 360) % 360
+
     def get_distance_travelled(self):
         return self.position
 

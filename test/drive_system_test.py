@@ -69,47 +69,108 @@ class DriveSystemTestCase(unittest.TestCase):
         d = DriveSystem(2)
         d.spin(-30)
         self.assertEqual(d.get_distance_travelled(), (0,0))
-        self.assertEqual(d.get_bearing(), 0)
+        self.assertEqual(d.get_bearing(), 330)
 
     def test30DegreeClock(self):
         d = DriveSystem(2)
         d.spin(30)
         self.assertEqual(d.get_distance_travelled(), (0,0))
+        self.assertEqual(d.get_bearing(), 30)
+
+    def test360DegreeClock(self):
+        d = DriveSystem(2)
+        d.spin(360)
+        self.assertEqual(d.get_distance_travelled(), (0,0))
+        self.assertEqual(d.get_bearing(), 0)
+
+    def test360DegreeAntiClock(self):
+        d = DriveSystem(2)
+        d.spin(-360)
+        self.assertEqual(d.get_distance_travelled(), (0,0))
+        self.assertEqual(d.get_bearing(), 0)
+
+    def test720DegreeClock(self):
+        d = DriveSystem(2)
+        d.spin(720)
+        self.assertEqual(d.get_distance_travelled(), (0,0))
+        self.assertEqual(d.get_bearing(), 0)
+
+    def test720DegreeAntiClock(self):
+        d = DriveSystem(2)
+        d.spin(-720)
+        self.assertEqual(d.get_distance_travelled(), (0,0))
         self.assertEqual(d.get_bearing(), 0)
 
     def test30DegreeTravel(self):
-        None
+        d = DriveSystem(2)
+        d.spin(30)
+        d.forward(5)
+        self.assertEqual(d.get_distance_travelled(), (3,4))
 
     def test60DegreeTravel(self):
-        None
+        d = DriveSystem(2)
+        d.spin(60)
+        d.forward(5)
+        self.assertEqual(d.get_distance_travelled(), (4,3))
 
     def test90DegreeTravel(self):
-        None
+        d = DriveSystem(2)
+        d.spin(90)
+        d.forward(5)
+        self.assertEqual(d.get_distance_travelled(), (5,0))
 
     def test120DegreeTravel(self):
-        None
+        d = DriveSystem(2)
+        d.spin(120)
+        d.forward(5)
+        self.assertEqual(d.get_distance_travelled(), (4,-3))
 
     def test150DegreeTravel(self):
-        None
+        d = DriveSystem(2)
+        d.spin(150)
+        d.forward(5)
+        self.assertEqual(d.get_distance_travelled(), (3,-4))
 
     def test180DegreeTravel(self):
-        None
+        d = DriveSystem(2)
+        d.spin(180)
+        d.forward(5)
+        self.assertEqual(d.get_distance_travelled(), (0,-5))
 
     def test210DegreeTravel(self):
-        None
+        d = DriveSystem(2)
+        d.spin(210)
+        d.forward(5)
+        self.assertEqual(d.get_distance_travelled(), (-3,-4))
 
     def test240DegreeTravel(self):
-        None
+        d = DriveSystem(2)
+        d.spin(240)
+        d.forward(5)
+        self.assertEqual(d.get_distance_travelled(), (-4,-3))
 
     def test270DegreeTravel(self):
-        None
+        d = DriveSystem(2)
+        d.spin(270)
+        d.forward(5)
+        self.assertEqual(d.get_distance_travelled(), (-5,0))
 
     def test300DegreeTravel(self):
-        None
+        d = DriveSystem(2)
+        d.spin(300)
+        d.forward(5)
+        self.assertEqual(d.get_distance_travelled(), (-4, 3))
 
     def test330DegreeTravel(self):
-        None
+        d = DriveSystem(2)
+        d.spin(330)
+        d.forward(5)
+        self.assertEqual(d.get_distance_travelled(), (-3,4))
+
 
     def test360DegreeTravel(self):
-        None
+        d = DriveSystem(2)
+        d.spin(360)
+        d.forward(5)
+        self.assertEqual(d.get_distance_travelled(), (0,5))
 
