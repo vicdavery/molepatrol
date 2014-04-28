@@ -1,0 +1,2 @@
+class PositionScan(object):
+    None
