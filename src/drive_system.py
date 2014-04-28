@@ -1,5 +1,6 @@
 from enum import Enum
 from motor import Motor
+import math
 
 
 class DriveSystem(object):
@@ -49,13 +50,22 @@ class DriveSystem(object):
         self.travel(distance * -1.0)
 
     def travel(self, distance):
-        self.position = (distance + self.position[0], self.position[1])
+        rad = math.radians(self.bearing)
+        if distance == 0:
+            return
+        try:
+            new_x = math.sin(rad) * distance
+            new_y = math.cos(rad) *  distance
+            self.position = (self.position[0] + new_x, self.position[1] + new_y)
+        except ValueError as e:
+            print ("Rad: ", rad, "Dist: ", distance)
+            raise
 
     def spin(self, degrees):
         # Handle negative turn angles and passing the full circle.
         self.bearing += (degrees + 360) % 360
 
-    def get_distance_travelled(self):
+    def get_position(self):
         return self.position
 
     def get_bearing(self):
