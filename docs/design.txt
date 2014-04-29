@@ -1,0 +1,36 @@
+
+
+
+                Motor    Encoder                    Camera
+                  \1        /1                        |*
+                   \       /                          |
+                    \1    /1                          |1
+                   MotorUnit                       Scanner
+                       |*                             |1
+                       |                              |
+                       |1                             |1
+                   DriveSystem                    Discovery
+                         \1                           |1
+                          \                           |
+                           \1                         |1
+                            Navigation-------------Terrain
+                                |1    1           1
+                                |
+                                |1
+                            Patroller
+
+
+
+
+
+A Motor is the abstraction of the raw motor itself, so we should be able to control it just as we would the motor itself. The controls are limited to forward,backward (and possibly at various rates)
+An Encoder is inextricably linked to the Motor but is a separate entity and so is represented as such. No inputs can be given, it is purely an output module that produces information as the motor turns.
+The MotorUnit is the real item, a combination of the motor and encoder. Now we have those combined it is possible to run the motor for a given distance, to determine direction and monitor rate of spin.
+The DriveSystem is the combining of 1 or more MotorUnits in order to provide direction and distance control.
+The Camera is just the abstraction of the raw camera, able to record images and video.
+The Scanner will use 1 or more Cameras in order to capture a visual representation of it's environment, it is responsible for stitching the images together to provide a coherent image of it's surroundings.
+Discovery is responsible for identifying the objects found in the images held by the scanner.
+Discovery will populate the Terrain module with the information about the terrain, showing the layout and obstacles
+Terrain is a map.
+Navigation receives inputs about where to go and it is able to plot a path which will avoid obstacles using the information from Terrain.
+Patroller is the module which is responsible for organising the actual patrol regime. It will go through the process of discovering it's terrain and then patrolling until such time as a charge is required. When charging is required it will return to base and charge itself.
