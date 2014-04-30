@@ -1,6 +1,6 @@
 import unittest
 from optical_encoder import Encoder
-from motor import Motor
+from motor_unit import MotorUnit
 
 class MotorUnitTestCase(unittest.TestCase):
     """
@@ -8,7 +8,6 @@ class MotorUnitTestCase(unittest.TestCase):
     """
     def testForwardOneRevolution(self):
         m = MotorUnit()
-        distance =
         None
     def testReverseOneRevolution(self):
         None

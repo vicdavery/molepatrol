@@ -1,4 +1,4 @@
-from __future__ import enum
+from enum import Enum
 from motor import Motor
 import math
 
