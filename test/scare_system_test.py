@@ -1,12 +1,18 @@
 import unittest
 import unittest.mock
+from suite import TestSettings
 from battery_monitor import BatteryMonitor
 from scarer import Scarer
 
 class ScareSystemTestCase(unittest.TestCase):
     def testScarer(self):
         # Check the battery drain first.
-        b = unittest.mock.Mock(spec=BatteryMonitor.get_drain_rate, side_effect=[5,10,5])
+        bm = BatteryMonitor()
+        b = None
+        if TestSettings.use_mocks:
+            b = unittest.mock.Mock(spec=bm.get_drain_rate, side_effect=[5,10,5])
+        else:
+            b = bm.get_drain_rate
         dr = b()
 
         # Start the scarer
