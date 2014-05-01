@@ -7,10 +7,8 @@ from suite import TestSettings
 
 class MotorTestCase(unittest.TestCase):
     def testForward(self):
-        # At this level of abstraction, the only indicator we'll have that the motor has run at all
-        # is the drain rate on the battery.
-        # Once we combine the optical encoder in a "MotorUnit" then we will be able to determine
-        # distance turned and speed, etc.
+        # At this level of abstraction, there are precious few indicators, so
+        # we'll use a combination of battery drain and the pin that is set with a value.
         bm = BatteryMonitor()
         b = None
         if TestSettings.use_mocks:
@@ -20,9 +18,13 @@ class MotorTestCase(unittest.TestCase):
         m = Motor()
         dr = b()
         m.forward()
+        self.assertNotEqual(m.forward_pin, 0)
+        self.assertEqual(m.backward_pin, 0)
         time.sleep(1)
         self.assertGreater(b(), dr, msg="Battery drain rate should be greater when the motor is running")
         m.stop()
+        self.assertEqual(m.forward_pin, 0)
+        self.assertEqual(m.backward_pin, 0)
         self.assertAlmostEqual(b(), dr, msg="Battery drain rate should be return to normal when the motor stops running")
 
     def testBackward(self):
@@ -35,8 +37,12 @@ class MotorTestCase(unittest.TestCase):
         m = Motor()
         dr = b()
         m.backward()
+        self.assertEqual(m.forward_pin, 0)
+        self.assertNotEqual(m.backward_pin, 0)
         time.sleep(1)
         self.assertGreater(b(), dr, msg="Battery drain rate should be greater when the motor is running")
         m.stop()
+        self.assertEqual(m.forward_pin, 0)
+        self.assertEqual(m.backward_pin, 0)
         self.assertAlmostEqual(b(), dr, msg="Battery drain rate should be return to normal when the motor stops running")
 

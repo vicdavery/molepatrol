@@ -9,15 +9,23 @@ ARRIVED_AT_MOLEHILL	src/state_machine.py	/^    ARRIVED_AT_MOLEHILL = 1$/;"	v	cla
 ArgumentParser	test/suite.py	/^from argparse import ArgumentParser$/;"	i
 BatteryMonitor	src/battery_monitor.py	/^class BatteryMonitor(object):$/;"	c
 BatteryMonitor	test/battery_monitor_test.py	/^from battery_monitor import BatteryMonitor$/;"	i
+BatteryMonitor	test/motor_test.py	/^from battery_monitor import BatteryMonitor$/;"	i
+BatteryMonitor	test/scare_system_test.py	/^from battery_monitor import BatteryMonitor$/;"	i
 BatteryMonitorTestCase	test/battery_monitor_test.py	/^class BatteryMonitorTestCase(unittest.TestCase):$/;"	c
 CHARGING	src/state_machine.py	/^    CHARGING = 3$/;"	v	class:State
 DONE_PATROLLING	src/state_machine.py	/^    DONE_PATROLLING = 8$/;"	v	class:Event
 DONE_SCANNING	src/state_machine.py	/^    DONE_SCANNING = 7$/;"	v	class:Event
 DONE_SCARING	src/state_machine.py	/^    DONE_SCARING = 2$/;"	v	class:Event
+DiscoveryTestCase	test/discovery_test.py	/^class DiscoveryTestCase(unittest.TestCase):$/;"	c
 DriveSystem	src/drive_system.py	/^class DriveSystem(object):$/;"	c
 DriveSystem	test/drive_system_test.py	/^from drive_system import DriveSystem$/;"	i
 DriveSystemTestCase	test/drive_system_test.py	/^class DriveSystemTestCase(unittest.TestCase):$/;"	c
 EMPTY	src/battery_monitor.py	/^    EMPTY = 0$/;"	v	class:BatteryMonitor
+Encoder	src/motor_unit.py	/^from optical_encoder import Encoder$/;"	i
+Encoder	src/optical_encoder.py	/^class Encoder(object):$/;"	c
+Encoder	test/encoder_test.py	/^from optical_encoder import Encoder$/;"	i
+Encoder	test/motor_unit_test.py	/^from optical_encoder import Encoder$/;"	i
+EncoderTestCase	test/encoder_test.py	/^class EncoderTestCase(unittest.TestCase):$/;"	c
 Enum	src/drive_system.py	/^from enum import Enum$/;"	i
 Event	src/state_machine.py	/^class Event(object):$/;"	c
 Event	test/state_machine_test.py	/^from state_machine import State, Event, StateMachine$/;"	i
@@ -33,10 +41,15 @@ LOW_BATTERY	src/state_machine.py	/^    LOW_BATTERY = 3$/;"	v	class:Event
 Molehill	src/terrain.py	/^    Molehill = 2$/;"	v	class:TerrainType
 Motor	src/drive_system.py	/^from motor import Motor$/;"	i
 Motor	src/motor.py	/^class Motor(object):$/;"	c
+Motor	src/motor_unit.py	/^from motor import Motor$/;"	i
+Motor	test/encoder_test.py	/^from motor import Motor$/;"	i
 Motor	test/motor_test.py	/^from motor import Motor$/;"	i
 MotorPosition	src/drive_system.py	/^    class MotorPosition(Enum):$/;"	c	class:DriveSystem
 MotorStatus	src/drive_system.py	/^    class MotorStatus(Enum):$/;"	c	class:DriveSystem
 MotorTestCase	test/motor_test.py	/^class MotorTestCase(unittest.TestCase):$/;"	c
+MotorUnit	src/motor_unit.py	/^class MotorUnit(object):$/;"	c
+MotorUnit	test/motor_unit_test.py	/^from motor_unit import MotorUnit$/;"	i
+MotorUnitTestCase	test/motor_unit_test.py	/^class MotorUnitTestCase(unittest.TestCase):$/;"	c
 NoTileException	src/patrol_exceptions.py	/^class NoTileException(Exception):$/;"	c
 NoTileException	src/terrain.py	/^from patrol_exceptions import OutOfRangeException, NoTileException$/;"	i
 NoTileException	test/terrain_test.py	/^from patrol_exceptions import NoTileException, OutOfRangeException$/;"	i
@@ -46,6 +59,8 @@ OutOfRangeException	test/terrain_test.py	/^from patrol_exceptions import NoTileE
 PATROLLING	src/state_machine.py	/^    PATROLLING = 1$/;"	v	class:State
 Paving	src/terrain.py	/^    Paving = 5$/;"	v	class:TerrainType
 Pond	src/terrain.py	/^    Pond = 4$/;"	v	class:TerrainType
+PositionScan	src/discovery.py	/^class PositionScan(object):$/;"	c
+PositionScan	test/discovery_test.py	/^from discovery import PositionScan$/;"	i
 RETURNING_TO_BASE	src/state_machine.py	/^    RETURNING_TO_BASE = 2$/;"	v	class:State
 SCANNING	src/state_machine.py	/^    SCANNING = 5$/;"	v	class:State
 SCANNING_TIME	src/state_machine.py	/^    SCANNING_TIME = 6$/;"	v	class:Event
@@ -53,6 +68,8 @@ SCARING	src/state_machine.py	/^    SCARING = 4$/;"	v	class:State
 START_PATROL	src/state_machine.py	/^    START_PATROL = 0$/;"	v	class:Event
 ScanningTestCase	test/scanning_test.py	/^class ScanningTestCase(unittest.TestCase):$/;"	c
 ScareSystemTestCase	test/scare_system_test.py	/^class ScareSystemTestCase(unittest.TestCase):$/;"	c
+Scarer	src/scarer.py	/^class Scarer(object):$/;"	c
+Scarer	test/scare_system_test.py	/^from scarer import Scarer$/;"	i
 State	src/state_machine.py	/^class State(object):$/;"	c
 State	test/state_machine_test.py	/^from state_machine import State, Event, StateMachine$/;"	i
 StateMachine	src/state_machine.py	/^class StateMachine(object):$/;"	c
@@ -67,6 +84,8 @@ TerrainGridTestCase	test/terrain_test.py	/^class TerrainGridTestCase(unittest.Te
 TerrainType	src/terrain.py	/^class TerrainType(object):$/;"	c
 TerrainType	test/terrain_test.py	/^from terrain import TerrainDescriptor, TerrainType, Terrain$/;"	i
 TestSettings	test/battery_monitor_test.py	/^from suite import TestSettings$/;"	i
+TestSettings	test/motor_test.py	/^from suite import TestSettings$/;"	i
+TestSettings	test/scare_system_test.py	/^from suite import TestSettings$/;"	i
 TestSettings	test/suite.py	/^class TestSettings(object):$/;"	c
 Tree	src/terrain.py	/^    Tree = 3$/;"	v	class:TerrainType
 Unset	src/terrain.py	/^    Unset = 0$/;"	v	class:TerrainType
@@ -84,14 +103,20 @@ __str__	src/patrol_exceptions.py	/^    def __str__(self):$/;"	m	class:InvalidEve
 __str__	src/patrol_exceptions.py	/^    def __str__(self):$/;"	m	class:NoTileException	file:
 __str__	src/patrol_exceptions.py	/^    def __str__(self):$/;"	m	class:OutOfRangeException	file:
 backward	src/drive_system.py	/^    def backward(self, distance):$/;"	m	class:DriveSystem
+backward	src/motor.py	/^    def backward(self):$/;"	m	class:Motor
+backward_pattern	test/encoder_test.py	/^    backward_pattern = [1,2,3,4]$/;"	v	class:EncoderTestCase
 create_required_motors	src/drive_system.py	/^    def create_required_motors(self, num_motors):$/;"	m	class:DriveSystem
 forward	src/drive_system.py	/^    def forward(self, distance):$/;"	m	class:DriveSystem
+forward	src/motor.py	/^    def forward(self):$/;"	m	class:Motor
+forward_pattern	test/encoder_test.py	/^    forward_pattern = [1,3,4,2]$/;"	v	class:EncoderTestCase
 front_left	src/drive_system.py	/^        front_left = 2$/;"	v	class:DriveSystem.MotorPosition
 front_right	src/drive_system.py	/^        front_right = 3$/;"	v	class:DriveSystem.MotorPosition
 get_bearing	src/drive_system.py	/^    def get_bearing(self):$/;"	m	class:DriveSystem
 get_distance_travelled	src/drive_system.py	/^    def get_distance_travelled(self):$/;"	m	class:DriveSystem
 get_drain_rate	src/battery_monitor.py	/^    def get_drain_rate(self):$/;"	m	class:BatteryMonitor
+get_input	src/optical_encoder.py	/^    def get_input(self,feed):$/;"	m	class:Encoder
 get_motor_status	src/drive_system.py	/^    def get_motor_status(self, motor_posn):$/;"	m	class:DriveSystem
+get_position	src/drive_system.py	/^    def get_position(self):$/;"	m	class:DriveSystem
 get_position	src/motor.py	/^    def get_position(self):$/;"	m	class:Motor
 get_size	src/terrain.py	/^    def get_size(self):$/;"	m	class:Terrain
 get_state	src/state_machine.py	/^    def get_state(self):$/;"	m	class:StateMachine
@@ -99,15 +124,21 @@ get_status	src/battery_monitor.py	/^    def get_status(self):$/;"	m	class:Batter
 get_steps_per_revolution	src/motor.py	/^    def get_steps_per_revolution(self):$/;"	m	class:Motor
 get_tile_type	src/terrain.py	/^    def get_tile_type(self, x, y):$/;"	m	class:Terrain
 get_type	src/terrain.py	/^    def get_type(self):$/;"	m	class:TerrainDescriptor
+get_value	src/optical_encoder.py	/^    def get_value(self):$/;"	m	class:Encoder
 handle_event	src/state_machine.py	/^    def handle_event(self, event):$/;"	m	class:StateMachine
 left	src/drive_system.py	/^        left = 0$/;"	v	class:DriveSystem.MotorPosition
 machine	src/state_machine.py	/^    machine = { State.IDLE : {Event.START_PATROL : State.PATROLLING,$/;"	v	class:StateMachine
+math	src/drive_system.py	/^import math$/;"	i
+mock	test/motor_test.py	/^import unittest.mock$/;"	i
+mock	test/scare_system_test.py	/^import unittest.mock$/;"	i
 not_present	src/drive_system.py	/^        not_present = -1$/;"	v	class:DriveSystem.MotorStatus
 ready	src/drive_system.py	/^        ready = 1$/;"	v	class:DriveSystem.MotorStatus
 rear_left	src/drive_system.py	/^        rear_left = 4$/;"	v	class:DriveSystem.MotorPosition
 rear_right	src/drive_system.py	/^        rear_right = 5$/;"	v	class:DriveSystem.MotorPosition
 right	src/drive_system.py	/^        right = 1$/;"	v	class:DriveSystem.MotorPosition
 run_slow_tests	test/suite.py	/^    run_slow_tests = False$/;"	v	class:TestSettings
+run_visual_tests	test/suite.py	/^    run_visual_tests = False$/;"	v	class:TestSettings
+scare	src/scarer.py	/^    def scare(self):$/;"	m	class:Scarer
 set_tile	src/terrain.py	/^    def set_tile(self, x, y, td):$/;"	m	class:Terrain
 set_type	src/terrain.py	/^    def set_type(self, terrain_type):$/;"	m	class:TerrainDescriptor
 settings	test/suite.py	/^settings = TestSettings()$/;"	v
@@ -115,6 +146,8 @@ single_step	src/motor.py	/^    def single_step(self, num=1):$/;"	m	class:Motor
 single_step_back	src/motor.py	/^    def single_step_back(self,num=1):$/;"	m	class:Motor
 spin	src/drive_system.py	/^    def spin(self, degrees):$/;"	m	class:DriveSystem
 steps_per_revolution	src/motor.py	/^    steps_per_revolution = 32$/;"	v	class:Motor
+stop	src/motor.py	/^    def stop(self):$/;"	m	class:Motor
+stop_scaring	src/scarer.py	/^    def stop_scaring(self):$/;"	m	class:Scarer
 sys	test/suite.py	/^import sys$/;"	i
 test120DegreeTravel	test/drive_system_test.py	/^    def test120DegreeTravel(self):$/;"	m	class:DriveSystemTestCase
 test150DegreeTravel	test/drive_system_test.py	/^    def test150DegreeTravel(self):$/;"	m	class:DriveSystemTestCase
@@ -127,10 +160,15 @@ test30DegreeAntiClock	test/drive_system_test.py	/^    def test30DegreeAntiClock(
 test30DegreeClock	test/drive_system_test.py	/^    def test30DegreeClock(self):$/;"	m	class:DriveSystemTestCase
 test30DegreeTravel	test/drive_system_test.py	/^    def test30DegreeTravel(self):$/;"	m	class:DriveSystemTestCase
 test330DegreeTravel	test/drive_system_test.py	/^    def test330DegreeTravel(self):$/;"	m	class:DriveSystemTestCase
+test360DegreeAntiClock	test/drive_system_test.py	/^    def test360DegreeAntiClock(self):$/;"	m	class:DriveSystemTestCase
+test360DegreeClock	test/drive_system_test.py	/^    def test360DegreeClock(self):$/;"	m	class:DriveSystemTestCase
 test360DegreeTravel	test/drive_system_test.py	/^    def test360DegreeTravel(self):$/;"	m	class:DriveSystemTestCase
 test60DegreeTravel	test/drive_system_test.py	/^    def test60DegreeTravel(self):$/;"	m	class:DriveSystemTestCase
+test720DegreeAntiClock	test/drive_system_test.py	/^    def test720DegreeAntiClock(self):$/;"	m	class:DriveSystemTestCase
+test720DegreeClock	test/drive_system_test.py	/^    def test720DegreeClock(self):$/;"	m	class:DriveSystemTestCase
 test90DegreeTravel	test/drive_system_test.py	/^    def test90DegreeTravel(self):$/;"	m	class:DriveSystemTestCase
 testAddDescriptors	test/terrain_test.py	/^    def testAddDescriptors(self):$/;"	m	class:TerrainGridTestCase
+testBackward	test/motor_test.py	/^    def testBackward(self):$/;"	m	class:MotorTestCase
 testBackwardHalfMetre	test/drive_system_test.py	/^    def testBackwardHalfMetre(self):$/;"	m	class:DriveSystemTestCase
 testBackwardHalfRevolution	test/motor_test.py	/^    def testBackwardHalfRevolution(self):$/;"	m	class:MotorTestCase
 testBackwardOneMetre	test/drive_system_test.py	/^    def testBackwardOneMetre(self):$/;"	m	class:DriveSystemTestCase
@@ -153,15 +191,26 @@ testCreate	test/state_machine_test.py	/^    def testCreate(self):$/;"	m	class:St
 testCreateGrid	test/terrain_test.py	/^    def testCreateGrid(self):$/;"	m	class:TerrainGridTestCase
 testCreateTypes	test/terrain_test.py	/^    def testCreateTypes(self):$/;"	m	class:TerrainDescriptorTestCase
 testCurrentCharge	test/battery_monitor_test.py	/^    def testCurrentCharge(self):$/;"	m	class:BatteryMonitorTestCase
+testDepthScan	test/discovery_test.py	/^    def testDepthScan(self):$/;"	m	class:DiscoveryTestCase
 testDrainRateReport	test/battery_monitor_test.py	/^    def testDrainRateReport(self):$/;"	m	class:BatteryMonitorTestCase
+testEncoderForward	test/encoder_test.py	/^    def testEncoderForward(self):$/;"	m	class:EncoderTestCase
+testEncoderInput1	test/encoder_test.py	/^    def testEncoderInput1(self):$/;"	m	class:EncoderTestCase
+testEncoderInput2	test/encoder_test.py	/^    def testEncoderInput2(self):$/;"	m	class:EncoderTestCase
+testForward	test/motor_test.py	/^    def testForward(self):$/;"	m	class:MotorTestCase
+testForwardFast	test/motor_unit_test.py	/^    def testForwardFast(self):$/;"	m	class:MotorUnitTestCase
 testForwardHalfMetre	test/drive_system_test.py	/^    def testForwardHalfMetre(self):$/;"	m	class:DriveSystemTestCase
 testForwardHalfRevolution	test/motor_test.py	/^    def testForwardHalfRevolution(self):$/;"	m	class:MotorTestCase
+testForwardMedium	test/motor_unit_test.py	/^    def testForwardMedium(self):$/;"	m	class:MotorUnitTestCase
 testForwardOneMetre	test/drive_system_test.py	/^    def testForwardOneMetre(self):$/;"	m	class:DriveSystemTestCase
 testForwardOneRevolution	test/motor_test.py	/^    def testForwardOneRevolution(self):$/;"	m	class:MotorTestCase
+testForwardOneRevolution	test/motor_unit_test.py	/^    def testForwardOneRevolution(self):$/;"	m	class:MotorUnitTestCase
 testForwardOneStep	test/motor_test.py	/^    def testForwardOneStep(self):$/;"	m	class:MotorTestCase
+testForwardSlow	test/motor_unit_test.py	/^    def testForwardSlow(self):$/;"	m	class:MotorUnitTestCase
 testForwardTwoMetres	test/drive_system_test.py	/^    def testForwardTwoMetres(self):$/;"	m	class:DriveSystemTestCase
 testForwardTwoRevolutions	test/motor_test.py	/^    def testForwardTwoRevolutions(self):$/;"	m	class:MotorTestCase
 testFourMotorDriveSystem	test/drive_system_test.py	/^    def testFourMotorDriveSystem(self):$/;"	m	class:DriveSystemTestCase
+testFullMatrixPopulationScan	test/discovery_test.py	/^    def testFullMatrixPopulationScan(self):$/;"	m	class:DiscoveryTestCase
+testFullSpinScan	test/discovery_test.py	/^    def testFullSpinScan(self):$/;"	m	class:DiscoveryTestCase
 testFullyCharged	test/battery_monitor_test.py	/^    def testFullyCharged(self):$/;"	m	class:BatteryMonitorTestCase
 testIdentifyAnimal	test/scanning_test.py	/^    def testIdentifyAnimal(self):$/;"	m	class:ScanningTestCase
 testIdentifyBush	test/scanning_test.py	/^    def testIdentifyBush(self):$/;"	m	class:ScanningTestCase
@@ -200,6 +249,11 @@ testReturningToBase_FullyCharged	test/state_machine_test.py	/^    def testReturn
 testReturningToBase_LowBattery	test/state_machine_test.py	/^    def testReturningToBase_LowBattery(self):$/;"	m	class:StateMachineCreationTestCase
 testReturningToBase_ScanningTime	test/state_machine_test.py	/^    def testReturningToBase_ScanningTime(self):$/;"	m	class:StateMachineCreationTestCase
 testReturningToBase_StartPatrol	test/state_machine_test.py	/^    def testReturningToBase_StartPatrol(self):$/;"	m	class:StateMachineCreationTestCase
+testReverseFast	test/motor_unit_test.py	/^    def testReverseFast(self):$/;"	m	class:MotorUnitTestCase
+testReverseMedium	test/motor_unit_test.py	/^    def testReverseMedium(self):$/;"	m	class:MotorUnitTestCase
+testReverseOneRevolution	test/motor_unit_test.py	/^    def testReverseOneRevolution(self):$/;"	m	class:MotorUnitTestCase
+testReverseSlow	test/motor_unit_test.py	/^    def testReverseSlow(self):$/;"	m	class:MotorUnitTestCase
+testScanAhead	test/discovery_test.py	/^    def testScanAhead(self):$/;"	m	class:DiscoveryTestCase
 testScanning_ArrivedAtBase	test/state_machine_test.py	/^    def testScanning_ArrivedAtBase(self):$/;"	m	class:StateMachineCreationTestCase
 testScanning_ArrivedAtMolehill	test/state_machine_test.py	/^    def testScanning_ArrivedAtMolehill(self):$/;"	m	class:StateMachineCreationTestCase
 testScanning_DoneScanning	test/state_machine_test.py	/^    def testScanning_DoneScanning(self):$/;"	m	class:StateMachineCreationTestCase
@@ -208,6 +262,7 @@ testScanning_FullyCharged	test/state_machine_test.py	/^    def testScanning_Full
 testScanning_LowBattery	test/state_machine_test.py	/^    def testScanning_LowBattery(self):$/;"	m	class:StateMachineCreationTestCase
 testScanning_ScanningTime	test/state_machine_test.py	/^    def testScanning_ScanningTime(self):$/;"	m	class:StateMachineCreationTestCase
 testScanning_StartPatrol	test/state_machine_test.py	/^    def testScanning_StartPatrol(self):$/;"	m	class:StateMachineCreationTestCase
+testScarer	test/scare_system_test.py	/^    def testScarer(self):$/;"	m	class:ScareSystemTestCase
 testScaring_ArrivedAtBase	test/state_machine_test.py	/^    def testScaring_ArrivedAtBase(self):$/;"	m	class:StateMachineCreationTestCase
 testScaring_ArrivedAtMolehill	test/state_machine_test.py	/^    def testScaring_ArrivedAtMolehill(self):$/;"	m	class:StateMachineCreationTestCase
 testScaring_DoneScanning	test/state_machine_test.py	/^    def testScaring_DoneScanning(self):$/;"	m	class:StateMachineCreationTestCase
@@ -217,7 +272,9 @@ testScaring_LowBattery	test/state_machine_test.py	/^    def testScaring_LowBatte
 testScaring_ScanningTime	test/state_machine_test.py	/^    def testScaring_ScanningTime(self):$/;"	m	class:StateMachineCreationTestCase
 testScaring_StartPatrol	test/state_machine_test.py	/^    def testScaring_StartPatrol(self):$/;"	m	class:StateMachineCreationTestCase
 testSetTileType	test/terrain_test.py	/^    def testSetTileType(self):$/;"	m	class:TerrainGridTestCase
+testSpin30AndScan	test/discovery_test.py	/^    def testSpin30AndScan(self):$/;"	m	class:DiscoveryTestCase
 testStartScarer	test/scare_system_test.py	/^    def testStartScarer(self):$/;"	m	class:ScareSystemTestCase
+testStitchingScan	test/discovery_test.py	/^    def testStitchingScan(self):$/;"	m	class:DiscoveryTestCase
 testStopScarer	test/scare_system_test.py	/^    def testStopScarer(self):$/;"	m	class:ScareSystemTestCase
 testTimeRemaining	test/battery_monitor_test.py	/^    def testTimeRemaining(self):$/;"	m	class:BatteryMonitorTestCase
 testTimeRemainingDecreases	test/battery_monitor_test.py	/^    def testTimeRemainingDecreases(self):$/;"	m	class:BatteryMonitorTestCase
@@ -225,13 +282,20 @@ testTwoMotorDriveSystemCreation	test/drive_system_test.py	/^    def testTwoMotor
 testUnsetTiles	test/terrain_test.py	/^    def testUnsetTiles(self):$/;"	m	class:TerrainGridTestCase
 testUpdateType	test/terrain_test.py	/^    def testUpdateType(self):$/;"	m	class:TerrainDescriptorTestCase
 time	test/battery_monitor_test.py	/^import time$/;"	i
+time	test/motor_test.py	/^import time$/;"	i
 travel	src/drive_system.py	/^    def travel(self, distance):$/;"	m	class:DriveSystem
 ts	test/suite.py	/^    ts = unittest.defaultTestLoader.discover(start_dir='.', pattern='*_test.py')$/;"	v	class:TestSettings
 unittest	test/battery_monitor_test.py	/^import unittest$/;"	i
+unittest	test/discovery_test.py	/^import unittest$/;"	i
 unittest	test/drive_system_test.py	/^import unittest$/;"	i
+unittest	test/encoder_test.py	/^import unittest$/;"	i
 unittest	test/motor_test.py	/^import unittest$/;"	i
+unittest	test/motor_test.py	/^import unittest.mock$/;"	i
+unittest	test/motor_unit_test.py	/^import unittest$/;"	i
 unittest	test/scanning_test.py	/^import unittest$/;"	i
 unittest	test/scare_system_test.py	/^import unittest$/;"	i
+unittest	test/scare_system_test.py	/^import unittest.mock$/;"	i
 unittest	test/state_machine_test.py	/^import unittest$/;"	i
 unittest	test/suite.py	/^import unittest$/;"	i
 unittest	test/terrain_test.py	/^import unittest$/;"	i
+use_mocks	test/suite.py	/^    use_mocks = False$/;"	v	class:TestSettings

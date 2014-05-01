@@ -1,32 +1,36 @@
 
 class Motor(object):
     """
-    The Motor class represents a single stepper motor, and provides the interface required for driving it.
+    The Motor class represents a motor, and provides the interface required for driving it.
+    The only abilities it has are to run the motor forward or backward. Anything more sophisticated will
+    be controlled by higher level classes.
     """
 
-    steps_per_revolution = 32
-
     def __init__(self):
-       self.position = 0
-    def forward(self):
+       self.forward_pin = 0
+       self.backward_pin = 0
 
+    def forward(self):
         # ****
         # Insert the hardware code here
         # ****
         #
-        None
+        self.backward_pin = 0
+        self.forward_pin = 1
 
     def backward(self):
         # ****
         # Insert the hardware code here
         # ****
         #
-        None
+        self.forward_pin = 0
+        self.backward_pin = 1
 
     def stop(self):
         # ****
         # Insert the hardware code here
         # ****
         #
-        None
+        self.forward_pin = 0
+        self.backward_pin = 0
 

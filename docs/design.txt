@@ -34,3 +34,9 @@ Discovery will populate the Terrain module with the information about the terrai
 Terrain is a map.
 Navigation receives inputs about where to go and it is able to plot a path which will avoid obstacles using the information from Terrain.
 Patroller is the module which is responsible for organising the actual patrol regime. It will go through the process of discovering it's terrain and then patrolling until such time as a charge is required. When charging is required it will return to base and charge itself.
+
+
+Testing
+-------
+Due to the hardware involved we will use mocking in order to test the software without any need to be installed in the actual hardware. 
+
