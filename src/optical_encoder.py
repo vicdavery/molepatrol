@@ -14,6 +14,10 @@ class Encoder(object):
     a 2 bit number. Higher level objects will then make sense of it.
     The receiving element itself is running in a separate thread, thus this call can be used by polling.
     """
+    @classmethod
+    def get_signals_per_revolution(cls):
+        return 1000
+
     def __init__(self):
         self.q = queue.Queue()
         self.recv = Receiver(self.q)

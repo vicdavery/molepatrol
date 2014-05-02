@@ -10,6 +10,14 @@ class EncoderTestCase(unittest.TestCase):
     forward_pattern = [1,3,4,2]
     backward_pattern = [1,2,3,4]
 
+    def testStaticData(self):
+        """
+        The encoder should know how many signals it will produce per revolution
+        """
+        self.assertGreater(Encoder.get_signals_per_revolution(), 0)
+        self.assertEqual(Encoder.get_signals_per_revolution(), 1000)
+
+    @unittest.skip("Long running")
     def testEncoderInput1(self):
         # We check what we receive from the first input when the motor turns.
         m = Motor()
@@ -20,6 +28,7 @@ class EncoderTestCase(unittest.TestCase):
         m.backward()
         self.assertTrue(e.get_input(1))
 
+    @unittest.skip("Long running")
     def testEncoderInput2(self):
         # Check what we receive from the second encoder input when the motor turns.
         m = Motor()
@@ -30,6 +39,7 @@ class EncoderTestCase(unittest.TestCase):
         m.backward()
         self.assertTrue(e.get_input(2))
 
+    @unittest.skip("Long running")
     def testEncoderForward(self):
         # The combination of the 2 inputs provide a 0-3 binary count, the sequence in which the values
         # appear indicates the direction of the motor.
