@@ -10,6 +10,7 @@ class TerrainDescriptorTestCase(unittest.TestCase):
         self.assertEqual(TerrainDescriptor(TerrainType.Tree).get_type(), TerrainType.Tree)
         self.assertEqual(TerrainDescriptor(TerrainType.Paving).get_type(), TerrainType.Paving)
         self.assertEqual(TerrainDescriptor(TerrainType.Pond).get_type(), TerrainType.Pond)
+        self.assertEqual(TerrainDescriptor(TerrainType.Fence).get_type(), TerrainType.Fence)
 
     def testUpdateType(self):
         t = TerrainDescriptor(TerrainType.Grass)
@@ -18,6 +19,7 @@ class TerrainDescriptorTestCase(unittest.TestCase):
         self.assertEqual(t.set_type(TerrainType.Tree).get_type(), TerrainType.Tree)
         self.assertEqual(t.set_type(TerrainType.Paving).get_type(), TerrainType.Paving)
         self.assertEqual(t.set_type(TerrainType.Pond).get_type(), TerrainType.Pond)
+        self.assertEqual(t.set_type(TerrainType.Fence).get_type(), TerrainType.Fence)
 
 class TerrainGridTestCase(unittest.TestCase):
     def testCreateGrid(self):

@@ -10,6 +10,7 @@ class TerrainType(object):
     Pond = 4
     Paving = 5
     Flowerbed = 6
+    Fence = 7
 
 class TerrainDescriptor(object):
     """
