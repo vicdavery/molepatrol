@@ -13,7 +13,11 @@ class DiscoveryTestCase(unittest.TestCase):
         """
         Ensure that we can scan immediately ahead and determine the make up.
         """
+#        cvmock = unittest.mock.Mock(spec=cvCaptureFromCAM, side_effect=[True])
         p = PositionScanner()
+#        img = p.capture_image()
+#        self.assertEqual(TerrainType.Grass, p.classify_image(img))
+#
         self.assertEqual(TerrainType.Grass, unittest.mock.Mock(spec=p.scan, side_effect=[TerrainType.Grass])(), msg="Should find Grass")
 
     def testScanAheadFindMolehill(self):
