@@ -6,7 +6,7 @@ class Patroller_GPIO(object):
     # is all that should need changing.
     class Pins(Enum):
         motor_out_1 = 1
-        motor__out_2 = 2
+        motor_out_2 = 2
         encorder_1 = 3
         encoder_2 = 4
         combined_encoder = 5

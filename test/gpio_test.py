@@ -12,11 +12,11 @@ class GPIOTestCase(unittest.TestCase):
 
     def testMotor1Output(self):
         g = Patroller_GPIO(self.gpio)
-        self.assertTrue(g.high(Patroller_GPIO.Pins.motor_sensor_1))
+        self.assertTrue(g.high(Patroller_GPIO.Pins.motor_out_1))
 
     def testMotor2Output(self):
         g = Patroller_GPIO(self.gpio)
-        self.assertTrue(g.high(Patroller_GPIO.Pins.motor_sensor_2))
+        self.assertTrue(g.high(Patroller_GPIO.Pins.motor_out_2))
 
     def testMotor1CurrentSensor(self):pass
     def testMotor2CurrentSensor(self):pass
