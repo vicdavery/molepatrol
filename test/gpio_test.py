@@ -1,15 +1,27 @@
 import unittest
+from suite import TestSettings
 from enum import Enum
-import patroller_gpio
+from patroller_gpio import Patroller_GPIO
 
 class GPIOTestCase(unittest.TestCase):
 
     def testMotor1Output(self):
-        g = patroller_gpio.PatrollerGPIO()
-        self.assertTrue(g.high(patroller_gpio.PatrollerGPIO.Pins.motor_1)
+        gpio = None
+        if TestSettings.use_mocks:
+            gpio = unittest.mock.Mock(spec=['input'], side_effect=[True])
+        else:
+            gpio = RPi.GPIO()
+        g = Patroller_GPIO(gpio)
+        self.assertTrue(g.high(Patroller_GPIO.Pins.motor_sensor_1))
 
     def testMotor2Output(self):
-        self.assertTrue(g.high(patroller_gpio.PatrollerGPIO.Pins.motor_2)
+        gpio = None
+        if TestSettings.use_mocks:
+            gpio = unittest.mock.Mock(spec=['input'], side_effect=[True])
+        else:
+            gpio = RPi.GPIO()
+        g = Patroller_GPIO(gpio)
+        self.assertTrue(g.high(Patroller_GPIO.Pins.motor_sensor_2))
 
     def testMotor1CurrentSensor(self):pass
     def testMotor2CurrentSensor(self):pass

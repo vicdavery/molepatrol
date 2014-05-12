@@ -12,4 +12,7 @@ class Patroller_GPIO(object):
         combined_encoder = 5
         motor_sensor_1 = 6
         motor_sensor_2 = 7
-
+    def __init__(self, gpio_object):
+        self.gpio = gpio_object
+    def high(self, pin):
+        return self.gpio.input(pin)
