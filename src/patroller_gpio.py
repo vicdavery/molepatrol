@@ -1,4 +1,5 @@
 from enum import Enum
+import RPi.GPIO as GPIO
 
 class Patroller_GPIO(object):
 
@@ -12,7 +13,9 @@ class Patroller_GPIO(object):
         combined_encoder = 5
         motor_sensor_1 = 6
         motor_sensor_2 = 7
-    def __init__(self, gpio_object):
-        self.gpio = gpio_object
     def high(self, pin):
-        return self.gpio.input(pin)
+        return GPIO.input(pin)
+    def is_input(self, pin):
+        return GPIO.pin_function(pin) == GPIO.INPUT
+    def is_output(self, pin):
+        return GPIO.pin_function(pin) == GPIO.OUTPUT
