@@ -10,7 +10,7 @@ class Motor(object):
        self.forward_pin = 0
        self.backward_pin = 0
 
-    def forward(self):
+    def forward(self, rate):
         # ****
         # Insert the hardware code here
         # ****
@@ -18,7 +18,7 @@ class Motor(object):
         self.backward_pin = 0
         self.forward_pin = 1
 
-    def backward(self):
+    def backward(self, rate):
         # ****
         # Insert the hardware code here
         # ****
@@ -33,4 +33,6 @@ class Motor(object):
         #
         self.forward_pin = 0
         self.backward_pin = 0
+    def current_drain(self):
+        return 1
 

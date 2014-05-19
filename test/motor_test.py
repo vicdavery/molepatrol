@@ -6,43 +6,42 @@ from battery_monitor import BatteryMonitor
 from suite import TestSettings
 
 class MotorTestCase(unittest.TestCase):
-    def testForward(self):
-        # At this level of abstraction, there are precious few indicators, so
-        # we'll use a combination of battery drain and the pin that is set with a value.
-        bm = BatteryMonitor()
-        b = None
-        if TestSettings.use_mocks:
-            b = unittest.mock.Mock(spec=bm.get_drain_rate, side_effect=[5,10,5])
-        else:
-            b = bm.get_drain_rate
-        m = Motor()
-        dr = b()
-        m.forward()
-        self.assertNotEqual(m.forward_pin, 0)
-        self.assertEqual(m.backward_pin, 0)
-        time.sleep(1)
-        self.assertGreater(b(), dr, msg="Battery drain rate should be greater when the motor is running")
-        m.stop()
-        self.assertEqual(m.forward_pin, 0)
-        self.assertEqual(m.backward_pin, 0)
-        self.assertAlmostEqual(b(), dr, msg="Battery drain rate should be return to normal when the motor stops running")
 
-    def testBackward(self):
-        bm = BatteryMonitor()
-        b = None
-        if TestSettings.use_mocks:
-            b = unittest.mock.Mock(spec=bm.get_drain_rate, side_effect=[5,10,5])
-        else:
-            b = bm.get_drain_rate
+    def testForward100Percent(self):
         m = Motor()
-        dr = b()
-        m.backward()
-        self.assertEqual(m.forward_pin, 0)
-        self.assertNotEqual(m.backward_pin, 0)
-        time.sleep(1)
-        self.assertGreater(b(), dr, msg="Battery drain rate should be greater when the motor is running")
+        m.forward(100)
+        self.assertGreater(m.current_drain(), 0, "The current drain should not be 0 when the motor is running")
+
+    def testBackward100Percent(self):
+        m = Motor()
+        m.backward(100)
+        self.assertGreater(m.current_drain(), 0, "The current drain should not be 0 when the motor is running")
+
+    def testForward50Percent(self):
+        m = Motor()
+        m.forward(50)
+        self.assertGreater(m.current_drain(), 0, "The current drain should not be 0 when the motor is running")
+
+    def testBackward50Percent(self):
+        m = Motor()
+        m.backward(50)
+        self.assertGreater(m.current_drain(), 0, "The current drain should not be 0 when the motor is running")
+
+    def testCurrentIncreaseWithHigherOutput(self):
+        m = Motor()
+        m.forward(20)
+        drain = m.current_drain()
+        self.assertGreater(drain, 0, "The current drain should not be 0 when the motor is running")
+        m.forward(40)
+        self.assertGreater(m.current_drain(), drain, "The current drain should be greater at 40% than at 20%")
+        drain = m.current_drain()
+        m.forward(60)
+        self.assertGreater(m.current_drain(), drain, "The current drain should be greater at 60% than at 40%")
+        drain = m.current_drain()
+        m.forward(80)
+        self.assertGreater(m.current_drain(), drain, "The current drain should be greater at 80% than at 60%")
+        drain = m.current_drain()
+        m.forward(100)
+        self.assertGreater(m.current_drain(), drain, "The current drain should be greater at 100% than at 80%")
         m.stop()
-        self.assertEqual(m.forward_pin, 0)
-        self.assertEqual(m.backward_pin, 0)
-        self.assertAlmostEqual(b(), dr, msg="Battery drain rate should be return to normal when the motor stops running")
 

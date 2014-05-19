@@ -14,7 +14,6 @@ class EncoderTestCase(unittest.TestCase):
         """
         The encoder should know how many signals it will produce per revolution
         """
-        self.assertGreater(Encoder.get_signals_per_revolution(), 0)
         self.assertEqual(Encoder.get_signals_per_revolution(), 1000)
 
     @unittest.skip("Long running")

@@ -23,7 +23,8 @@
 
 
 
-A Motor is the abstraction of the raw motor itself, so we should be able to control it just as we would the motor itself. The controls are limited to forward,backward (and possibly at various rates)
+A Motor is the abstraction of the raw motor itself, so we should be able to control it just as we would the motor itself. The controls are limited to forward and backward at various rates. The rates will be specified as percentages of full speed.
+
 An Encoder is inextricably linked to the Motor but is a separate entity and so is represented as such. No inputs can be given, it is purely an output module that produces information as the motor turns.
 The MotorUnit is the real item, a combination of the motor and encoder. Now we have those combined it is possible to run the motor for a given distance, to determine direction and monitor rate of spin.
 The DriveSystem is the combining of 1 or more MotorUnits in order to provide direction and distance control.

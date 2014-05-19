@@ -4,8 +4,6 @@ from enum import Enum
 from patroller_gpio import Patroller_GPIO
 import RPi.GPIO as GPIO
 
-def mock_outputs():
-    return False
 
 class GPIOTestCase(unittest.TestCase):
 
@@ -46,14 +44,14 @@ class GPIOTestCase(unittest.TestCase):
         the current sensor value changes
         """
         # Setup the mock values
-        GPIO.input.return_value = True
+        GPIO.input.return_value = False
         GPIO.pin_function.return_value = GPIO.INPUT
 
         g = Patroller_GPIO()
         g.is_output(Patroller_GPIO.Pins.motor_sensor_1)
         self.assertTrue(GPIO.pin_function.called, "Calling is_output should call the underlying pin_function")
-        self.assertTrue(g.is_input(Patroller_GPIO.Pins.motor_sensor_1), "This pin should be an output")
-        self.assertFalse(g.is_output(Patroller_GPIO.Pins.motor_sensor_1), "This pin should be an output")
+        self.assertTrue(g.is_input(Patroller_GPIO.Pins.motor_sensor_1), "This pin should be an input")
+        self.assertFalse(g.is_output(Patroller_GPIO.Pins.motor_sensor_1), "This pin should be an input")
 
     @unittest.mock.patch('patroller_gpio.GPIO')
     def testMotor2CurrentSensor(self, GPIO):
@@ -68,21 +66,38 @@ class GPIOTestCase(unittest.TestCase):
         g = Patroller_GPIO()
         g.is_output(Patroller_GPIO.Pins.motor_sensor_2)
         self.assertTrue(GPIO.pin_function.called, "Calling is_output should call the underlying pin_function")
-        self.assertTrue(g.is_input(Patroller_GPIO.Pins.motor_sensor_2), "This pin should be an output")
-        self.assertFalse(g.is_output(Patroller_GPIO.Pins.motor_sensor_2), "This pin should be an output")
+        self.assertTrue(g.is_input(Patroller_GPIO.Pins.motor_sensor_2), "This pin should be an input")
+        self.assertFalse(g.is_output(Patroller_GPIO.Pins.motor_sensor_2), "This pin should be an input")
 
-    def testOpticalEncoder1(self):
+    @unittest.mock.patch('patroller_gpio.GPIO')
+    def testOpticalEncoder1(self, GPIO):
         """
         When motor is not running then the encoder value should not change
         When motor is running then the encoder value should be changing
         """
-        g = Patroller_GPIO()
+        # Setup the mock values
+        GPIO.input.return_value = True
+        GPIO.pin_function.return_value = GPIO.INPUT
 
-    def testOpticalEncoder2(self):
+        g = Patroller_GPIO()
+        g.is_output(Patroller_GPIO.Pins.motor_sensor_2)
+        self.assertTrue(GPIO.pin_function.called, "Calling is_output should call the underlying pin_function")
+        self.assertTrue(g.is_input(Patroller_GPIO.Pins.motor_sensor_2), "This pin should be an input")
+        self.assertFalse(g.is_output(Patroller_GPIO.Pins.motor_sensor_2), "This pin should be an input")
+
+    @unittest.mock.patch('patroller_gpio.GPIO')
+    def testOpticalEncoder2(self, GPIO):
         """
         When motor is not running then the encoder value should not change
         When motor is running then the encoder value should be changing
         """
+        GPIO.input.return_value = True
+        GPIO.pin_function.return_value = GPIO.INPUT
+
         g = Patroller_GPIO()
+        g.is_output(Patroller_GPIO.Pins.motor_sensor_2)
+        self.assertTrue(GPIO.pin_function.called, "Calling is_output should call the underlying pin_function")
+        self.assertTrue(g.is_input(Patroller_GPIO.Pins.motor_sensor_2), "This pin should be an input")
+        self.assertFalse(g.is_output(Patroller_GPIO.Pins.motor_sensor_2), "This pin should be an input")
 
 
