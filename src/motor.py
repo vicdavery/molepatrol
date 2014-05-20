@@ -1,4 +1,4 @@
-
+import RPi.GPIO as GPIO
 class Motor(object):
     """
     The Motor class represents a motor, and provides the interface required for driving it.

@@ -14,8 +14,19 @@ class Patroller_GPIO(object):
         motor_sensor_1 = 6
         motor_sensor_2 = 7
     def high(self, pin):
-        return GPIO.input(pin)
+        if self.is_input(pin):
+            return GPIO.input(pin)
+    def set_high(self, pin):
+        if self.is_output(pin):
+            GPIO.output(pin, True)
+    def set_low(self, pin):
+        if self.is_output(pin):
+            GPIO.output(pin, False)
     def is_input(self, pin):
         return GPIO.pin_function(pin) == GPIO.INPUT
     def is_output(self, pin):
         return GPIO.pin_function(pin) == GPIO.OUTPUT
+    def value(self, pin):
+        if self.is_input(pin):
+            return GPIO.input(pin)
+

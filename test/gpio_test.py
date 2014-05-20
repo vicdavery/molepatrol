@@ -20,6 +20,12 @@ class GPIOTestCase(unittest.TestCase):
         self.assertTrue(GPIO.pin_function.called, "Checking input should call pin_function")
         self.assertEqual(g.is_input(Patroller_GPIO.Pins.motor_out_1), False, "This pin should be an output")
         self.assertEqual(g.is_output(Patroller_GPIO.Pins.motor_out_1), True, "This pin should be an output")
+        g.set_high(Patroller_GPIO.Pins.motor_out_1)
+        self.assertTrue(GPIO.output.called, "Ensure that the output setter is called")
+        g.set_low(Patroller_GPIO.Pins.motor_out_1)
+        self.assertTrue(GPIO.output.called, "Ensure that the output setter is called")
+        g.high(Patroller_GPIO.Pins.motor_out_1)
+        self.assertFalse(GPIO.input.called, "This is an output pin so we shouldn't test it's value")
 
     @unittest.mock.patch('patroller_gpio.GPIO')
     def testMotor2Output(self, GPIO):
@@ -36,6 +42,12 @@ class GPIOTestCase(unittest.TestCase):
         self.assertTrue(GPIO.pin_function.called, "Calling is_output should call the underlying pin_function")
         self.assertFalse(g.is_input(Patroller_GPIO.Pins.motor_out_2), "This pin should be an output")
         self.assertTrue(g.is_output(Patroller_GPIO.Pins.motor_out_2), "This pin should be an output")
+        g.set_high(Patroller_GPIO.Pins.motor_out_2)
+        self.assertTrue(GPIO.output.called, "Ensure that the output setter is called")
+        g.set_low(Patroller_GPIO.Pins.motor_out_2)
+        self.assertTrue(GPIO.output.called, "Ensure that the output setter is called")
+        g.high(Patroller_GPIO.Pins.motor_out_2)
+        self.assertFalse(GPIO.input.called, "This is an output pin so we shouldn't test it's value")
 
     @unittest.mock.patch('patroller_gpio.GPIO')
     def testMotor1CurrentSensor(self, GPIO):
@@ -52,6 +64,15 @@ class GPIOTestCase(unittest.TestCase):
         self.assertTrue(GPIO.pin_function.called, "Calling is_output should call the underlying pin_function")
         self.assertTrue(g.is_input(Patroller_GPIO.Pins.motor_sensor_1), "This pin should be an input")
         self.assertFalse(g.is_output(Patroller_GPIO.Pins.motor_sensor_1), "This pin should be an input")
+        g.set_high(Patroller_GPIO.Pins.motor_sensor_1)
+        self.assertFalse(GPIO.output.called, "Ensure that the output setter is not called, this is an input pin")
+        g.set_low(Patroller_GPIO.Pins.motor_sensor_1)
+        self.assertFalse(GPIO.output.called, "Ensure that the output setter is not called, this is an input pin")
+        g.set_high(Patroller_GPIO.Pins.motor_out_1)
+        GPIO.input.return_value = 10
+        self.assertGreater(g.value(Patroller_GPIO.Pins.motor_sensor_1), 0, "The current sensor should increase when we run the motor")
+        g.set_low(Patroller_GPIO.Pins.motor_out_1)
+
 
     @unittest.mock.patch('patroller_gpio.GPIO')
     def testMotor2CurrentSensor(self, GPIO):
