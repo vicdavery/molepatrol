@@ -1,4 +1,4 @@
-import RPi.GPIO as GPIO
+from patroller_gpio import Patroller_GPIO as GPIO
 class Motor(object):
     """
     The Motor class represents a motor, and provides the interface required for driving it.
@@ -6,33 +6,21 @@ class Motor(object):
     be controlled by higher level classes.
     """
 
-    def __init__(self):
-       self.forward_pin = 0
-       self.backward_pin = 0
+    def __init__(self, motor_id, motor_sensor_id):
+        self.gpio = GPIO()
+        self.motor_id = motor_id
+        self.motor_sensor_id = motor_sensor_id
+        self.gpio.set_low(self.motor_id)
 
     def forward(self, rate):
-        # ****
-        # Insert the hardware code here
-        # ****
-        #
-        self.backward_pin = 0
-        self.forward_pin = 1
+        self.gpio.set_high(self.motor_id)
 
     def backward(self, rate):
-        # ****
-        # Insert the hardware code here
-        # ****
-        #
-        self.forward_pin = 0
-        self.backward_pin = 1
+        self.gpio.set_low(self.motor_id)
 
     def stop(self):
-        # ****
-        # Insert the hardware code here
-        # ****
-        #
-        self.forward_pin = 0
-        self.backward_pin = 0
+        self.gpio.set_off(self.motor_id)
+
     def current_drain(self):
-        return 1
+        return self.gpio.value(self.motor_sensor_id)
 

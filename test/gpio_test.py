@@ -8,6 +8,34 @@ import RPi.GPIO as GPIO
 class GPIOTestCase(unittest.TestCase):
 
     @unittest.mock.patch('patroller_gpio.GPIO')
+    def test_motor1_forward(self, GPIO): pass
+
+    @unittest.mock.patch('patroller_gpio.GPIO')
+    def test_motor2_forward(self, GPIO): pass
+
+    @unittest.mock.patch('patroller_gpio.GPIO')
+    def test_motor1_backward(self, GPIO): pass
+
+    @unittest.mock.patch('patroller_gpio.GPIO')
+    def test_motor2_backward(self, GPIO): pass
+
+    @unittest.mock.patch('patroller_gpio.GPIO')
+    def test_motor1_different_speeds(self, GPIO): pass
+    
+    @unittest.mock.patch('patroller_gpio.GPIO')
+    def test_motor2_different_speeds(self, GPIO): pass
+
+    @unittest.mock.patch('patroller_gpio.GPIO')
+    def test_motor1_backward(self, GPIO): pass
+
+    @unittest.mock.patch('patroller_gpio.GPIO')
+    def test_motor1_backward(self, GPIO): pass
+
+    @unittest.mock.patch('patroller_gpio.GPIO')
+    def test_motor1_backward(self, GPIO): pass
+
+        
+    @unittest.mock.patch('patroller_gpio.GPIO')
     def testMotor1Output(self, GPIO):
         """
         Test that the pin is an output pin and that we can set it both
