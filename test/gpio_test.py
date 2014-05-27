@@ -15,6 +15,7 @@ class GPIOTestCase(unittest.TestCase):
         self.assertTrue(GPIO.pin_function.called, "Calling is output should call to pin_function")
         self.assertFalse(g.is_input(GPIO.Pins.motor_out_1))
         g.set_high(Patroller_GPIO.Pins.motor_out_1)
+        g.set_low(Patroller_GPIO.Pins.motor_out_1)
 
 
     @unittest.mock.patch('patroller_gpio.GPIO')
