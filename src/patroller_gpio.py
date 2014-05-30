@@ -21,33 +21,34 @@ class Patroller_GPIO(object):
 
     def __init__(self):
         # Initialise the pins
+	GPIO.cleanup()
         GPIO.setmode(GPIO.BCM)
-        GPIO.setup(Pins.motor_1_direction, GPIO.OUT)
-        GPIO.setup(Pins.motor_1_current, GPIO.OUT)
-        GPIO.setup(Pins.motor_2_direction, GPIO.OUT)
-        GPIO.setup(Pins.motor_3_current, GPIO.OUT)
-        GPIO.setup(Pins.motor_1_encoder_1, GPIO.IN)
-        GPIO.setup(Pins.motor_1_encoder_2, GPIO.IN)
-        GPIO.setup(Pins.motor_2_encoder_1, GPIO.IN)
-        GPIO.setup(Pins.motor_2_encoder_2, GPIO.IN)
+        GPIO.setup(Patroller_GPIO.Pins.motor_1_direction.value, GPIO.OUT)
+        GPIO.setup(Patroller_GPIO.Pins.motor_1_current.value, GPIO.OUT)
+        GPIO.setup(Patroller_GPIO.Pins.motor_2_direction.value, GPIO.OUT)
+        GPIO.setup(Patroller_GPIO.Pins.motor_2_current.value, GPIO.OUT)
+        GPIO.setup(Patroller_GPIO.Pins.motor_1_encoder_1.value, GPIO.IN)
+        GPIO.setup(Patroller_GPIO.Pins.motor_1_encoder_2.value, GPIO.IN)
+        GPIO.setup(Patroller_GPIO.Pins.motor_2_encoder_1.value, GPIO.IN)
+        GPIO.setup(Patroller_GPIO.Pins.motor_2_encoder_2.value, GPIO.IN)
 
     def fwd(self):
-        GPIO.output(Pins.motor_1_direction, True)
-        GPIO.output(Pins.motor_2_direction, True)
-        GPIO.output(Pins.motor_1_current, True)
-        GPIO.output(Pins.motor_2_current, True)
+        GPIO.output(Patroller_GPIO.Pins.motor_1_direction.value, True)
+        GPIO.output(Patroller_GPIO.Pins.motor_2_direction.value, True)
+        GPIO.output(Patroller_GPIO.Pins.motor_1_current.value, True)
+        GPIO.output(Patroller_GPIO.Pins.motor_2_current.value, True)
         time.sleep(0.5)
-        GPIO.output(Pins.motor_1_current, False)
-        GPIO.output(Pins.motor_2_current, False)
+        GPIO.output(Patroller_GPIO.Pins.motor_1_current.value, False)
+        GPIO.output(Patroller_GPIO.Pins.motor_2_current.value, False)
 
     def bckwd(self):
-        GPIO.output(Pins.motor_1_direction, False)
-        GPIO.output(Pins.motor_2_direction, False)
-        GPIO.output(Pins.motor_1_current, True)
-        GPIO.output(Pins.motor_2_current, True)
+        GPIO.output(Patroller_GPIO.Pins.motor_1_direction.value, False)
+        GPIO.output(Patroller_GPIO.Pins.motor_2_direction.value, False)
+        GPIO.output(Patroller_GPIO.Pins.motor_1_current.value, True)
+        GPIO.output(Patroller_GPIO.Pins.motor_2_current.value, True)
         time.sleep(0.5)
-        GPIO.output(Pins.motor_1_current, False)
-        GPIO.output(Pins.motor_2_current, False)
+        GPIO.output(Patroller_GPIO.Pins.motor_1_current.value, False)
+        GPIO.output(Patroller_GPIO.Pins.motor_2_current.value, False)
 
     def set_high(self, pin): pass
     def set_low(self, pin): pass
