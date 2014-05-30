@@ -8,7 +8,14 @@ import RPi.GPIO as GPIO
 class GPIOTestCase(unittest.TestCase):
 
     @unittest.mock.patch('patroller_gpio.GPIO')
-    def test_motor1_forward(self, GPIO): pass
+    def test_motor1_forward(self, GPIO):
+        GPIO.pin_function.return_value = GPIO.OUT
+        g = Patroller_GPIO()
+        self.assertTrue(g.is_output(GPIO.Pins.motor_out_1))
+        self.assertTrue(GPIO.pin_function.called, "Calling is output should call to pin_function")
+        self.assertFalse(g.is_input(GPIO.Pins.motor_out_1))
+        g.set_high(Patroller_GPIO.Pins.motor_out_1)
+
 
     @unittest.mock.patch('patroller_gpio.GPIO')
     def test_motor2_forward(self, GPIO): pass
@@ -21,7 +28,7 @@ class GPIOTestCase(unittest.TestCase):
 
     @unittest.mock.patch('patroller_gpio.GPIO')
     def test_motor1_different_speeds(self, GPIO): pass
-    
+
     @unittest.mock.patch('patroller_gpio.GPIO')
     def test_motor2_different_speeds(self, GPIO): pass
 
@@ -34,7 +41,7 @@ class GPIOTestCase(unittest.TestCase):
     @unittest.mock.patch('patroller_gpio.GPIO')
     def test_motor1_backward(self, GPIO): pass
 
-        
+
     @unittest.mock.patch('patroller_gpio.GPIO')
     def testMotor1Output(self, GPIO):
         """
