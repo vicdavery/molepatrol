@@ -1,6 +1,7 @@
 import unittest
 import sys
 from argparse import ArgumentParser
+import xmlrunner
 
 class TestSettings(object):
     run_slow_tests = False
@@ -20,4 +21,4 @@ class TestSettings(object):
 settings = TestSettings()
 if __name__ == '__main__':
     ts = unittest.defaultTestLoader.discover(start_dir='.', pattern='*_test.py')
-    unittest.TextTestRunner().run(ts)
+    xmlrunner.XMLTestRunner(output='test-reports').run(ts)

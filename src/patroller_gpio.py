@@ -22,9 +22,6 @@ class Patroller_GPIO(object):
     def __init__(self):
         # Initialise the pins
 
-    def set_high(self, pin): pass
-    def set_low(self, pin): pass
-
     def high(self, pin):
         if self.is_input(pin):
             return GPIO.input(pin)

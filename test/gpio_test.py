@@ -12,10 +12,14 @@ class GPIOTestCase(unittest.TestCase):
         GPIO.pin_function.return_value = GPIO.OUT
         g = Patroller_GPIO()
         self.assertTrue(g.is_output(GPIO.Pins.motor_out_1))
-        self.assertTrue(GPIO.pin_function.called, "Calling is output should call to pin_function")
+        self.assertTrue(GPIO.pin_function.called, "Calling is_output should call pin_function")
         self.assertFalse(g.is_input(GPIO.Pins.motor_out_1))
+        self.assertTrue(GPIO.pin_funcftion.called, "Calling is_input should call pin_function")
         g.set_high(Patroller_GPIO.Pins.motor_out_1)
+        self.assertTrue(GPIO.output.called, "Calling set_high should call output")
         g.set_low(Patroller_GPIO.Pins.motor_out_1)
+        g.assertTrue(GPIO.output.called, "Calling set_low should call output")
+
 
 
     @unittest.mock.patch('patroller_gpio.GPIO')
