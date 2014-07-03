@@ -1,26 +1,26 @@
-from patroller_gpio import Patroller_GPIO as GPIO
+from patroller_gpio import Patroller_GPIO
+
 class Motor(object):
     """
     The Motor class represents a motor, and provides the interface required for driving it.
-    The only abilities it has are to run the motor forward or backward. Anything more sophisticated will
-    be controlled by higher level classes.
+    The only abilities it has are to run the motor forward or backward at various rates.
+    Anything more sophisticated will be controlled by higher level classes.
     """
 
-    def __init__(self, motor_id, motor_sensor_id):
-        self.gpio = GPIO()
-        self.motor_id = motor_id
-        self.motor_sensor_id = motor_sensor_id
-        self.gpio.set_low(self.motor_id)
+    def __init__(self, motor_pins):
+        self.gpio = Patroller_GPIO()
+        self.motor_pins = motor_pins
+        self.gpio.set_low(self.motor_pins.current)
+        self.gpio.set_low(self.motor_pins.direction)
+        self.gpio.set_low(self.motor_pins.pwm)
 
     def forward(self, rate):
-        self.gpio.set_high(self.motor_id)
+        self.gpio.set_high(self.motor_pins.pwm)
 
     def backward(self, rate):
-        self.gpio.set_low(self.motor_id)
+        self.gpio.set_low(self.motor_pins.direction)
 
     def stop(self):
-        self.gpio.set_off(self.motor_id)
+        self.gpio.set_off(self.motor_pins.current)
 
-    def current_drain(self):
-        return self.gpio.value(self.motor_sensor_id)
 
