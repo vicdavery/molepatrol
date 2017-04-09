@@ -1,7 +1,7 @@
 import unittest
 import unittest.mock
-from discovery import PositionScanner
-from terrain import TerrainType
+from molepatrol.cv.discovery import PositionScanner
+from molepatrol.cv.terrain import TerrainType
 from suite import TestSettings
 
 @unittest.skipUnless(TestSettings.use_mocks, reason="Discovery Test requires Mocking")

@@ -2,7 +2,7 @@ import unittest
 import unittest.mock
 from suite import TestSettings
 from enum import Enum
-from patroller_gpio import Patroller_GPIO, Motor_0_Pins, Motor_1_Pins
+from molepatrol.hardware.patroller_gpio import Patroller_GPIO, Motor_0_Pins, Motor_1_Pins
 
 class GPIOTestCase(unittest.TestCase):
     """
@@ -10,7 +10,7 @@ class GPIOTestCase(unittest.TestCase):
     In order to prove this, it is necessary to mock the hardware itself. This will allow us to provide
     responses that we would expect from the hardware in any given state.
     """
-    @unittest.mock.patch('patroller_gpio.GPIO.Hardware')
+    @unittest.mock.patch('molepatrol.hardware.patroller_gpio.GPIO.Hardware')
     def test_motor0_pin_config(self, mock_class):
         g = Patroller_GPIO()
         # Firstly ensure the pins are set to the correct function.
@@ -24,7 +24,7 @@ class GPIOTestCase(unittest.TestCase):
         self.assertTrue(g.is_output(Motor_0_Pins.direction))
         self.assertTrue(mock_class.pin_function.called, "Calling is_output should call pin_function")
 
-    @unittest.mock.patch('patroller_gpio.GPIO.Hardware')
+    @unittest.mock.patch('molepatrol.hardware.patroller_gpio.GPIO.Hardware')
     def test_motor1_pin_config(self, mock_class):
         g = Patroller_GPIO()
         # Firstly ensure the pins are set to the correct function.
@@ -39,7 +39,7 @@ class GPIOTestCase(unittest.TestCase):
         self.assertTrue(mock_class.pin_function.called, "Calling is_output should call pin_function")
 
 
-    @unittest.mock.patch('patroller_gpio.GPIO.Hardware')
+    @unittest.mock.patch('molepatrol.hardware.patroller_gpio.GPIO.Hardware')
     def test_motor0_forward(self, mock_class):
         """
         Check that when we instruct motor 0 to go fowrward the correct pins are set.
@@ -54,7 +54,7 @@ class GPIOTestCase(unittest.TestCase):
         g.set_low(Motor_0_Pins.current)
         self.assertTrue(mock_class.output.called, "Calling set_low should call output")
 
-    @unittest.mock.patch('patroller_gpio.GPIO.Hardware')
+    @unittest.mock.patch('molepatrol.hardware.patroller_gpio.GPIO.Hardware')
     def test_motor1_forward(self, mock_class):
         mock_class.pin_function.return_value = mock_class.OUT
         g = Patroller_GPIO()
@@ -66,7 +66,7 @@ class GPIOTestCase(unittest.TestCase):
         g.set_low(Motor_1_Pins.current)
         self.assertTrue(mock_class.output.called, "Calling set_low should call output")
 
-    @unittest.mock.patch('patroller_gpio.GPIO.Hardware')
+    @unittest.mock.patch('molepatrol.hardware.patroller_gpio.GPIO.Hardware')
     def test_motor0_backward(self, mock_class):
         mock_class.pin_function.return_value = mock_class.OUT
         g = Patroller_GPIO()
@@ -78,7 +78,7 @@ class GPIOTestCase(unittest.TestCase):
         g.set_low(Motor_0_Pins.current)
         self.assertTrue(mock_class.output.called, "Calling set_low should call output")
 
-    @unittest.mock.patch('patroller_gpio.GPIO.Hardware')
+    @unittest.mock.patch('molepatrol.hardware.patroller_gpio.GPIO.Hardware')
     def test_motor1_backward(self, mock_class):
         mock_class.pin_function.return_value = mock_class.OUT
         g = Patroller_GPIO()
@@ -90,7 +90,7 @@ class GPIOTestCase(unittest.TestCase):
         g.set_low(Motor_1_Pins.current)
         self.assertTrue(mock_class.output.called, "Calling set_low should call output")
 
-    @unittest.mock.patch('patroller_gpio.GPIO.Hardware')
+    @unittest.mock.patch('molepatrol.hardware.patroller_gpio.GPIO.Hardware')
     def test_current_sensor(self, mock_class):
         mock_class.pin_function.return_value = mock_class.IN
         g = Patroller_GPIO()

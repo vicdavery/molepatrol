@@ -1,4 +1,4 @@
-from terrain import TerrainType
+from molepatrol.cv.terrain import TerrainType
 
 class PositionScanner(object):
     def scan(self):

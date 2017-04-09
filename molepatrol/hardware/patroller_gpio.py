@@ -1,6 +1,6 @@
 from enum import Enum
 #from RPi.GPIO import Hardware
-from RPi import GPIO
+from molepatrol.hardware import GPIO
 
 class Motor_0_Pins(Enum):
     direction = 17

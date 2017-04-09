@@ -1,6 +1,6 @@
 import unittest
-from terrain import TerrainDescriptor, TerrainType, Terrain
-from patrol_exceptions import NoTileException, OutOfRangeException
+from molepatrol.cv.terrain import TerrainDescriptor, TerrainType, Terrain
+from molepatrol.util.patrol_exceptions import NoTileException, OutOfRangeException
 
 class TerrainDescriptorTestCase(unittest.TestCase):
     def testCreateTypes(self):

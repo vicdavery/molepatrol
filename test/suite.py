@@ -19,5 +19,8 @@ class TestSettings(object):
 
 settings = TestSettings()
 if __name__ == '__main__':
-    ts = unittest.defaultTestLoader.discover(start_dir='.', pattern='*_test.py')
+    ts = unittest.defaultTestLoader.discover(
+            start_dir='test', 
+            top_level_dir='.',
+            pattern='*_test.py')
     unittest.TextTestRunner().run(ts)

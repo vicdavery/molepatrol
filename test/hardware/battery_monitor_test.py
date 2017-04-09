@@ -1,6 +1,6 @@
 import unittest
 import time
-from battery_monitor import BatteryMonitor
+from molepatrol.hardware.battery_monitor import BatteryMonitor
 from suite import TestSettings
 
 class BatteryMonitorTestCase(unittest.TestCase):

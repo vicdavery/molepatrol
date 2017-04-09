@@ -1,7 +1,8 @@
 #
 # The classes required for describing the terrain which is being patrolled.
 #
-from patrol_exceptions import OutOfRangeException, NoTileException
+from molepatrol.util.patrol_exceptions import OutOfRangeException, NoTileException
+
 class TerrainType(object):
     Unset = 0
     Grass = 1

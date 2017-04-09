@@ -1,3 +1,4 @@
+from molepatrol.cv.discovery import PositionScanner
 
 if __name__ == '__main__':
     """

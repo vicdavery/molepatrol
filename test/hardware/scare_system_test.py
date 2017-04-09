@@ -1,8 +1,8 @@
 import unittest
 import unittest.mock
 from suite import TestSettings
-from battery_monitor import BatteryMonitor
-from scarer import Scarer
+from molepatrol.hardware.battery_monitor import BatteryMonitor
+from molepatrol.hardware.scarer import Scarer
 
 class ScareSystemTestCase(unittest.TestCase):
     def testScarer(self):
