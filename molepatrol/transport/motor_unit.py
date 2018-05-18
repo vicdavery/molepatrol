@@ -1,5 +1,5 @@
-from motor import Motor
-from optical_encoder import Encoder
+from molepatrol.transport.motor import Motor
+from molepatrol.transport.optical_encoder import Encoder
 
 class MotorUnit(object):
     """

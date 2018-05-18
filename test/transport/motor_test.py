@@ -1,9 +1,9 @@
 import unittest
 import unittest.mock
 import time
-from motor import Motor
+from molepatrol.transport.motor import Motor
 from suite import TestSettings
-from patroller_gpio import Patroller_GPIO, Motor_0_Pins, Motor_1_Pins
+from molepatrol.hardware.patroller_gpio import Patroller_GPIO, Motor_0_Pins, Motor_1_Pins
 
 class MotorTestCase(unittest.TestCase):
     """
@@ -11,13 +11,13 @@ class MotorTestCase(unittest.TestCase):
     When we run the motor then we expect the GPIO pins to be called appropriately which we will
     check using the mocked GPIO.
     """
-    @unittest.mock.patch('motor.Patroller_GPIO')
+    @unittest.mock.patch('molepatrol.transport.motor.Patroller_GPIO')
     def testMotorInitialisation(self, mock_class):
         m = Motor(Motor_0_Pins)
         calls = [unittest.mock.call(Motor_0_Pins.current), unittest.mock.call(Motor_0_Pins.direction), unittest.mock.call(Motor_0_Pins.pwm)]
         m.gpio.set_low.assert_has_calls(calls)
 
-    @unittest.mock.patch('motor.Patroller_GPIO')
+    @unittest.mock.patch('molepatrol.transport.motor.Patroller_GPIO')
     def testForward100Percent(self, mock_class):
         #mock_class.is_output.return_value = True
         m = Motor(Motor_0_Pins)

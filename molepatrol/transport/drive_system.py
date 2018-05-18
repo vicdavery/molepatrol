@@ -1,5 +1,5 @@
 from enum import Enum
-from motor import Motor
+from molepatrol.transport.motor import Motor
 import math
 
 

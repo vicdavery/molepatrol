@@ -1,4 +1,4 @@
-from patroller_gpio import Patroller_GPIO
+from molepatrol.hardware.patroller_gpio import Patroller_GPIO
 
 class Motor(object):
     """
@@ -6,7 +6,6 @@ class Motor(object):
     The only abilities it has are to run the motor forward or backward at various rates.
     Anything more sophisticated will be controlled by higher level classes.
     """
-
     def __init__(self, motor_pins):
         self.gpio = Patroller_GPIO()
         self.motor_pins = motor_pins

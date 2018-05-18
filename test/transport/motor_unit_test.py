@@ -1,6 +1,6 @@
 import unittest
-from optical_encoder import Encoder
-from motor_unit import MotorUnit
+from molepatrol.transport.optical_encoder import Encoder
+from molepatrol.transport.motor_unit import MotorUnit
 
 class MotorUnitTestCase(unittest.TestCase):
     """

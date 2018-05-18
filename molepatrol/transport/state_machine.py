@@ -2,15 +2,15 @@
 #    |                                     |
 #    |                                     V
 #  IDLE <---> PATROLLING --------> RETURNING TO BASE ---> CHARGING
-#    ^        ^        ^                   ^                 |
-#    |        |        |                   |                 |
-#    |        V        V                   |                 |
-#    |    SCARING  SCANNING----------------+                 |
-#    |        |                            |                 |
-#    |        +----------------------------+                 |
+#    ^        ^        ^                                     |
+#    |        |        |                                     |
+#    |        V        V                                     |
+#    |    SCARING  SCANNING                                  |
+#    |                                                       |
+#    |                                                       |
 #    +-------------------------------------------------------+
 
-from patrol_exceptions import InvalidEventException
+from molepatrol.util.patrol_exceptions import InvalidEventException
 
 class State(object):
     IDLE = 0
@@ -41,9 +41,9 @@ class StateMachine(object):
                State.RETURNING_TO_BASE : {Event.ARRIVED_AT_BASE : State.CHARGING},
                State.CHARGING : {Event.FULLY_CHARGED : State.IDLE},
                State.SCARING : {Event.DONE_SCARING : State.PATROLLING,
-                                Event.LOW_BATTERY : State.RETURNING_TO_BASE},
+                                Event.LOW_BATTERY : State.PATROLLING},
                State.SCANNING : {Event.DONE_SCANNING : State.PATROLLING,
-                                 Event.LOW_BATTERY : State.RETURNING_TO_BASE}}
+                                 Event.LOW_BATTERY : State.PATROLLING}}
     def __init__(self):
         self.state = State.IDLE
 

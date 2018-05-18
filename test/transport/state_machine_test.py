@@ -1,6 +1,6 @@
 import unittest
-from state_machine import State, Event, StateMachine
-from patrol_exceptions import InvalidEventException
+from molepatrol.transport.state_machine import State, Event, StateMachine
+from molepatrol.util.patrol_exceptions import InvalidEventException
 
 
 class StateMachineCreationTestCase(unittest.TestCase):
@@ -271,7 +271,7 @@ class StateMachineCreationTestCase(unittest.TestCase):
         sm.handle_event(Event.START_PATROL)
         sm.handle_event(Event.ARRIVED_AT_MOLEHILL)
         sm.handle_event(Event.LOW_BATTERY)
-        self.assertEqual(sm.get_state(), State.RETURNING_TO_BASE, "SCARING + LOW_BATTERY -> RETURNING_TO_BASE is valid")
+        self.assertEqual(sm.get_state(), State.PATROLLING, "SCARING + LOW_BATTERY -> PATROLLING is valid")
 
     def testScaring_FullyCharged(self):
         sm = StateMachine()
@@ -330,7 +330,7 @@ class StateMachineCreationTestCase(unittest.TestCase):
         sm.handle_event(Event.START_PATROL)
         sm.handle_event(Event.SCANNING_TIME)
         sm.handle_event(Event.LOW_BATTERY)
-        self.assertEqual(sm.get_state(), State.RETURNING_TO_BASE, "SCANNING + LOW_BATTERY -> RETURNING_TO_BASE is valid")
+        self.assertEqual(sm.get_state(), State.PATROLLING, "SCANNING + LOW_BATTERY PATROLLING is valid")
 
     def testScanning_FullyCharged(self):
         sm = StateMachine()
