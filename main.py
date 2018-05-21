@@ -1,6 +1,6 @@
-from cv.discovery import PositionScanner
+from molepatrol.cv.discovery import PositionScanner
 
-if __name__ == '__main__':
+class MolePatroller(object):
     """
     At startup the patroller will scan its terrain, this process will take some time.
     The general approach taken, will be to observe its immediate surroundings, then move in
@@ -56,3 +56,20 @@ if __name__ == '__main__':
     25) Create diversion for V which runs: U->G-A->I->W
     26) We want to move to Y but the diversion sends us to J
 """
+    def __init__(self):
+        self.state_machine = StateMachine()
+    def run(self):
+        while True:
+            events = check_inputs()
+            process_events(events)
+    def check_inputs(self):
+        return None
+    def process_events(self, events):
+        for e in events:
+            self.state_machine.handle_event(e)
+
+if __name__ == '__main__':
+    patroller = MolePatroller()
+    patroller.run()
+
+
